@@ -13,6 +13,7 @@ def load_spend_data():
     return df
 
 st.title("CUSTOMER SEGMENTATION ANALYSIS ")
+st.image(r"images\Customer segmentation 123.jpg")
 
 with st.spinner("loading dataset"):
     df=load_spend_data()
@@ -54,6 +55,10 @@ fig7=px.bar(age_df,age_df.index,'income',title='income in different age')
 st.info("the income distributed is even,and there are no big difference in the group")
 country_df=df.groupby('country')['income'].sum()
 fig8=px.bar(country_df,country_df.index,'income',title='income in differrent country')
+spending_df=df.groupby('spending')['income'].sum()
+fig9=px.bar(spending_df,spending_df.index,'income',title='income distribution with respect to spending ')
+purchase_df=df.groupby('purchase_frequency')['income'].sum()
+fig10=px.line(purchase_df,purchase_df.index,'income',title='purchase_frequency distribution')
 st.plotly_chart(fig4, use_container_width=True)
 st.info("The bachelors group earns the most of these groups")
 st.plotly_chart(fig5, use_container_width=True)
@@ -63,4 +68,7 @@ st.plotly_chart(fig7,use_container_width=True)
 st.info("income  distribution with respect to age")
 st.plotly_chart(fig8,use_container_width=True)
 st.info("income distribution with respect to country")
-
+st.plotly_chart(fig9,use_container_width=True)
+st.info("income distribution with respect to spending income")
+st.plotly_chart(fig10,use_container_width=True)
+st.info("Their is a purchasing grequency of the income")
